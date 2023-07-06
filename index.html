@@ -51,14 +51,19 @@
         The value of the style property must be a string. You will need to concatenate a it with Math.random() to generate the value for the top and left positions.
         Call the function with a JS timing function, and assign it a variable so you can clear the interval on game over.
         */
-       let max = 800;
        let min = 0;
+       let max = 0;
+    
 
         let timing = setInterval( function move(){
-            let top = Math.random() * (max - min) + min;
+
+            let maxWidth = window.innerWidth;
+            let maxHeight = window.innerHeight;
+
+            let top = Math.random() * (maxHeight - min) + min;
             firefly.style.top = `${top}px`;
             console.log(top);
-            let left = Math.random() * (max - min) + min;
+            let left = Math.random() * (maxWidth - min) + min;
             firefly.style.left = `${left}px`;
             console.log(left);
 ;        }, 1000);
