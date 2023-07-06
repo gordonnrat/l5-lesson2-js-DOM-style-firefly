@@ -22,33 +22,56 @@
 
     <script>
         // 1. Create a variable to keep score and give it an initial value.
-       
+       let score = 0;
     
         // 2. Select the firefly picture by its id and assign it a variable.
-      
+      const firefly = document.querySelector("#firefly");
+      console.log(firefly);
         
        // 3. Select the #score p tag by its id and assign it a variable.
-       
+       const scores = document.querySelector("#score");
+       console.log(scores);
 
         // 4. Hide the game over div using the style property.
-       
-
+       let gameover = document.querySelector("#game-over");
+        gameover.style.display = "none";
 
         /* 5. Write a function to increase the score when the firefly is clicked. 
         To call the function, add a click event listener to the firefly. */
-      
+        function increaseScore(){
+            score++;
+            console.log(score)
+            scores.innerHTML = score;
+        }
+
+        firefly.addEventListener("click", increaseScore);
         
 
         /* 6. Create a function to move the firefly to random positions every second.
         The value of the style property must be a string. You will need to concatenate a it with Math.random() to generate the value for the top and left positions.
         Call the function with a JS timing function, and assign it a variable so you can clear the interval on game over.
         */
+       let max = 800;
+       let min = 0;
 
-
-     
+        let timing = setInterval( function move(){
+            let top = Math.random() * (max - min) + min;
+            firefly.style.top = `${top}px`;
+            console.log(top);
+            let left = Math.random() * (max - min) + min;
+            firefly.style.left = `${left}px`;
+            console.log(left);
+;        }, 1000);
+        console.log(timing);
 
         /* 7. Stop the animation and show the #game-over div after 1 minute */
-       
+        setTimeout(function stop(){
+            clearInterval(timing);
+            gameover.style.display = "block";
+            firefly.style.display = "none";
+        }, 60000)
+
+
 
     </script>
 </body>
